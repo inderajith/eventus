@@ -25,18 +25,20 @@ const SearchBar = () => {
                         </div>
                         <div className="input-field col s4 l2">
                             <select>
-                                <option value="" disabled selected>Category</option>
+                                <option value="all">All</option>
                                 <option value="arts">Arts</option>
                                 <option value="coding">Coding</option>
                                 <option value="yoga">Yoga</option>
                             </select>
+                            <label className="mylabel">Category</label>
                         </div>
                         <div className="input-field col s4 l2">
                             <select>
-                                <option value="" disabled selected>Price</option>
+                                <option value="all">All</option>
                                 <option value="free">Free</option>
                                 <option value="paid">Paid</option>
                             </select>
+                            <label className="mylabel">Fees</label>
                         </div>
                     </div>
                 </div>

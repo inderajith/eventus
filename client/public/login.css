@@ -15,6 +15,18 @@ h3 {
   box-shadow: 1px 1px 10px #1465b6;
 }
 
+/* .input-field>label{
+  color: white;
+} */
+.mylabel {
+  color: #fff !important;
+  padding-bottom: 5px;
+}
+
+.select-wrapper + label {
+  top: -29px !important;
+}
+
 .title {
   color: #fff;
   font-family: "PT Serif", serif;
@@ -135,6 +147,11 @@ input[type="text"]:not(.browser-default) {
 .cdate,
 .ctime {
   color: rgb(99, 99, 99);
+  padding: 0 2px 0;
+}
+
+.cdescription {
+  color: rgb(153, 149, 149);
 }
 
 .ctitle {
@@ -145,8 +162,13 @@ input[type="text"]:not(.browser-default) {
   padding: 10px 0 3px 0;
 }
 
+.cname,
+.caddress {
+  color: rgb(153, 149, 149);
+}
+
 .cfrom {
-  color: rgb(133, 133, 133);
+  color: rgb(128, 127, 127);
 }
 
 .i1:hover {

@@ -22,7 +22,6 @@ export default {
         const res = await fetch('/user/authenticated');
         if (res.status !== 401) {
             const data = await res.json();
-            console.log(data);
             return data;
             // return res.json().then(data => data);
         }

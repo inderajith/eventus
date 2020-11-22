@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const EventItem = ({date, imgurl, time, from, title, members}) => {
     return (
         <div className="row">
