@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className="">
+      <div>
       <Route exact path="/" component={Home}/>
       <Route path="/login" component={Login}/>
       <Route path="/register" component={Register}/>
@@ -26,3 +26,5 @@ function App() {
 }
 
 export default App;
+
+//cd Documents/mern_projects/event_finder/

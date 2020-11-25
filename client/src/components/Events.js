@@ -59,9 +59,9 @@ const Events = ()=>{
                      time:dateTime.split(" ")[1],
                      description: event.description._text,
                      url:event.url._text,
-                     venue_name:event.venue_name._text,
-                     venue_address: event.venue_address._text,
-                     city_name: event.city_name._text,
+                     name:event.venue_name._text,
+                     address: event.venue_address._text,
+                    //  city_name: event.city_name._text,
                      id:event._attributes.id,
                      title: event.title._text,
                      from: "Eventful"
@@ -123,15 +123,17 @@ const Events = ()=>{
 
     const fetchEvents = () => {
           return ( eventDetails.map( e => {
-            return <EventFulItem date= {e.date}
+            return <EventFulItem
+                key={e.id}
+                date= {e.date}
                 time={e.time}
                 title={e.title}
                 description={e.description}
                 from={e.from}
                 url={e.url}
-                eventDetails={eventDetails}
                 name={e.name}
                 address={e.address}
+                id={e.id}
             />
             })
           )

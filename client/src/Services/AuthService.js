@@ -28,5 +28,21 @@ export default {
 
         else
             return { isAuthenticated: false, user: { username: "" } };
+    },
+    postEvents : event => {
+        return fetch('/user/wishlist', {method:"post", body:JSON.stringify(event), headers:{'Content-Type':'application/json'}})
+                .then(res => res.json())
+                .then(data => data)
+    },
+    getEvents: () => {
+        return fetch('/user/wishlist')
+        .then(res => res.json())
+        .then(data => data)
+    },
+    deleteEvent: id => {
+        return fetch(`/user/wishlist/${id}`, {method:"delete"})
+                .then( res => res.json())
+                .then(data => data);
     }
 }
+

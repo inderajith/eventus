@@ -36,6 +36,8 @@ userRouter.post('/register', (req, res) => {
 });
 
 
+
+
 userRouter.post('/login', passport.authenticate('local', {session:false}), (req, res)=>{
     if(req.isAuthenticated()){
         const {_id, username} = req.user;
@@ -51,7 +53,7 @@ userRouter.get('/logout', passport.authenticate('jwt', {session:false}), (req, r
     res.json({user:{username:""}, success:true});
 });
 
-userRouter.post('/event', passport.authenticate('jwt', {session:false}), (req, res)=>{
+userRouter.post('/wishlist', passport.authenticate('jwt', {session:false}), (req, res)=>{
     const event = new Event(req.body);
     event.save(err=>{
         if(err)
@@ -62,14 +64,27 @@ userRouter.post('/event', passport.authenticate('jwt', {session:false}), (req, r
                 if(err)
                     res.status(500).json({message: {msgBody: "Error has ocurred", msgError:true}});
                 else
-                    res.status(200).json({message: {msgBody: "successfully created event", msgError:false}});
+                    res.status(200).json({message: {msgBody: "successfully Added the event to wishlist", msgError:false}});
             })
         }
 
     })
 });
 
-userRouter.get('/events', passport.authenticate('jwt', {session:false}), (req, res)=>{
+userRouter.delete('/wishlist/:id', passport.authenticate('jwt', {session:false}), (req,res) => {
+    const id = req.params.id;
+    Event.findByIdAndDelete({_id : id}, (err) => {
+        if(err)
+        {
+            res.status(500).json({message: {msgBody: "Error has ocurred", msgError:true}});
+        }
+        else{
+            res.status(200).json({message: {msgBody: "successfully removed the event from wishlist", msgError:false}});
+        }
+    });
+})
+
+userRouter.get('/wishlist', passport.authenticate('jwt', {session:false}), (req, res)=>{
     User.findById({_id : req.user._id}).populate('events').exec((err,document)=>{
         if(err)
             // res.status(500).json({message: {msgBody: "Error has ocurred", msgError:true}});

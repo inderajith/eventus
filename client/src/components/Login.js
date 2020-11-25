@@ -32,7 +32,7 @@ const Login = props => {
                 <h3>Sign In</h3>
                 <div className="fm">
                 <label htmlFor="username">Username:</label>
-                <input type="text" name="username" onChange={onChange} className="input-field" placeholder="Enter a username" autoComplete="off"/>
+                <input type="text" name="username" onChange={onChange} className="input-field" placeholder="Enter a username" />
                 <br />
                 <label htmlFor="password">Password:</label>
                 <input type="password" name="password" onChange={onChange} className="input-field" placeholder="Enter a password" />

@@ -1,2 +1,3 @@
 # eventus
-This is more like meetup and eventbrite app,  we integrate all the popular event finding apps using their API provided 
+
+An web app which integrates all the popular event finding apps such as eventful, predictHQ, etc.. using their API services.

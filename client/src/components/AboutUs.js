@@ -31,10 +31,10 @@ const AboutUs = ()=>{
                     <div className="col s4 l3">
                         <h5>Connect with us</h5>
                         <ul>
-                            <li><i class="fab fa-2x fa-twitter-square left"></i><p>Twitter</p></li>
-                            <li><i class="fab fa-2x fa-facebook-square left"></i><p>Facebook</p></li>
-                            <li><i class="fab fa-2x fa-google-plus-square left"></i><p>Google</p></li>
-                            <li><i class="fab fa-2x fa-instagram left"></i><p>Instagram</p></li>
+                            <li><i className="fab fa-2x fa-facebook-square left"></i><p>Facebook</p></li>
+                            <li><i className="fab fa-2x fa-twitter-square left"></i><p>Twitter</p></li>
+                            <li><i className="fab fa-2x fa-google-plus-square left"></i><p>Google</p></li>
+                            <li><i className="fab fa-2x fa-instagram left"></i><p>Instagram</p></li>
                         </ul>
                     </div>
                 </div>

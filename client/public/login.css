@@ -173,7 +173,7 @@ input[type="text"]:not(.browser-default) {
 
 .i1:hover {
   cursor: pointer;
-  color: red;
+  color: rgb(211, 54, 54);
 }
 
 .i2:hover {
