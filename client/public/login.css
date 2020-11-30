@@ -11,9 +11,9 @@ h3 {
   padding: 20px;
 }
 
-.fm:hover {
-  box-shadow: 1px 1px 10px #1465b6;
-}
+/* .fm:hover {
+  box-shadow: 1px 1px 10px 1px rgb(104, 102, 102);
+} */
 
 /* .input-field>label{
   color: white;
@@ -29,15 +29,18 @@ h3 {
 
 .title {
   color: #fff;
-  font-family: "PT Serif", serif;
+  font-family: "Patrick Hand", cursive;
   margin-bottom: 40px;
   margin-top: 0px;
   padding-top: 20px;
+  font-size: 60px;
 }
 
 .content {
   color: rgb(241, 240, 240);
-  font-family: "PT Serif", serif;
+  font-family: "Patrick Hand", cursive;
+  font-size: 40px !important;
+  padding: 0 100px;
 }
 
 .head {
@@ -47,6 +50,10 @@ h3 {
   color: white;
   min-height: 600px;
   margin-bottom: 2px;
+}
+
+.above {
+  position: absolute;
 }
 
 /* Search Bar */
@@ -110,18 +117,54 @@ input[type="text"]:not(.browser-default) {
   background-color: #fff !important;
   color: #3399ff;
   height: 30px !important;
+  width: 150px !important;
   padding: 0 0 0 3px !important;
 }
 
 .select-wrapper .caret {
   z-index: 2 !important;
   fill: #3399ff !important;
+  position: absolute !important;
+  right: -58px !important;
 }
 
 .datepicker {
   height: 30px !important;
   width: 100px !important;
   padding-left: 6px !important;
+}
+
+.sdate {
+  color: #3399ff !important;
+  background-color: #fff !important;
+  width: 145px !important;
+  height: 35px !important;
+  border-radius: 5px !important;
+  position: relative;
+  top: -1px;
+  right: 10px;
+}
+
+input[type="date"]:not(.browser-default) {
+  border-bottom: none !important;
+}
+
+.sbtn {
+  padding: 0px 5px !important;
+  height: 38px !important;
+  margin: -5px 0px 0px 10px;
+}
+
+.sbtn:hover {
+  /* background-color: #3399ff !important;
+  color: #fff !important; */
+  box-shadow: 1px 1px 10px 1px white !important;
+}
+
+.scountry {
+  position: relative;
+  right: 40px !important;
+  width: 200px !important;
 }
 
 ::placeholder {
@@ -169,6 +212,11 @@ input[type="text"]:not(.browser-default) {
 
 .cfrom {
   color: rgb(128, 127, 127);
+}
+
+.i11:hover {
+  cursor: pointer;
+  color: red;
 }
 
 .i1:hover {

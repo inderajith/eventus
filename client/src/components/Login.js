@@ -27,9 +27,9 @@ const Login = props => {
     }
 
     return (
-        <div>
+        <div style={{'minHeight':'500px'}}>
             <form onSubmit={onSubmit}>
-                <h3>Sign In</h3>
+                <h3 style={{'marginTop':'70px'}}>Sign In</h3>
                 <div className="fm">
                 <label htmlFor="username">Username:</label>
                 <input type="text" name="username" onChange={onChange} className="input-field" placeholder="Enter a username" />

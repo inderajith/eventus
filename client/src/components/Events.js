@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import axios from 'axios';
 import converter from 'xml-js';
 import EventFulItem from './EventFulItem';
+import Loader from './Loader';
 
 
 
@@ -22,21 +23,29 @@ import EventFulItem from './EventFulItem';
 
 
 
-const Events = ()=>{
+const Events = (props)=>{
 
     const [eventDetails, setEventDetails] = useState([]);
     const [ok, setOk] = useState(false);
+    const [mydate, setMydate] = useState("2020120100-2021122500");
+    const [myDate1, setMyDate1] = useState("2020-12-01");
+    const [myDate2, setMyDate2] = useState("2021-12-25");
+    const [category, setCategory] = useState("conferences,concerts,community,festivals,performing-arts");
+    const [lat, setLat] = useState('');
+    const [lon, setLon] = useState('');
+    // const [keywords, setKeywords] = useState("");
 
 
     useEffect(async () =>  {
-
-        let lat = "";
-        let lon = "";
-
-
     navigator.geolocation.getCurrentPosition((position) => {
-         lat = position.coords.latitude;
-         lon = position.coords.longitude;
+        let lat1 = position.coords.latitude;
+        let lon1 = position.coords.longitude;
+
+        if(lat === '')
+        {
+            setLat(lat1);
+            setLon(lon1);
+        }
 
          axios.get('http://api.eventful.com/rest/events/search', {
             params:{
@@ -44,6 +53,8 @@ const Events = ()=>{
                 // "where": "11.0168,76.9558",
                 "where": `${lat},${lon}`,
                 "within": "25",
+                // "keywords":"food"
+                "date": mydate
             }
         })
         .then(res => {
@@ -51,8 +62,10 @@ const Events = ()=>{
             const data = JSON.parse(result);
             console.log(data);
             const events = data.search.events.event;
-
-            events.forEach( event => {
+            setEventDetails([]);
+            if(events.length !== undefined)
+            {
+                events.map( event => {
                     const dateTime = event.start_time._text;
                     const newObj = {
                      date:dateTime.split(" ")[0],
@@ -70,6 +83,26 @@ const Events = ()=>{
                         return [...oldArray, newObj];
                     });
                 })
+            }
+            else{
+                    const dateTime = events.start_time._text;
+                    const newObj = {
+                     date:dateTime.split(" ")[0],
+                     time:dateTime.split(" ")[1],
+                     description: events.description._text,
+                     url:events.url._text,
+                     name:events.venue_name._text,
+                     address: events.venue_address._text,
+                    //  city_name: event.city_name._text,
+                     id:events._attributes.id,
+                     title: events.title._text,
+                     from: "Eventful"
+                    };
+                    setEventDetails((oldArray) => {
+                        return [...oldArray, newObj];
+                    });
+            }
+
 
             })
             .then(() => {
@@ -79,14 +112,16 @@ const Events = ()=>{
                 Authorization : "Bearer DN0I7b9Yml3cyDba1Qy-xEz5jQV9FLY_rQlnu5hN"
             },
             params:{
-                "within":"20km@11.0168,76.9558",
-                "category":"conferences,concerts,community,festivals,performing-arts"
+                "within":`20km@${lat},${lon}`,
+                "category":category,
+                "end.gte": myDate1,
+                "end.lte": myDate2
 
             }
         })
         .then(res => {
             const results = res.data.results;
-                results.forEach(result => {
+                results.map(result => {
                     const dateTime = result.start;
                     const vname = result.entities.length == 0 ? "" : result.entities[0].name ;
                     const vaddress = result.entities.length == 0 ? "" : result.entities[0].formatted_address;
@@ -118,10 +153,11 @@ const Events = ()=>{
 
         });
 
-    }, [])
+    }, [mydate, myDate1, myDate2, category, lon])
 
 
     const fetchEvents = () => {
+
           return ( eventDetails.map( e => {
             return <EventFulItem
                 key={e.id}
@@ -139,18 +175,51 @@ const Events = ()=>{
           )
     }
 
+
+    const setFilters = (date, cat, loc) => {
+        console.log(date);
+        let newDate3 = date;
+        date = date.split("-");
+        let newDate4 = date[0] + "-" + date[1] + "-";
+        let newDate1 = date.join("");
+        newDate1 += "00";
+        let newDate2 = date[0] + date[1];
+        if(Number(date[2]) < 10)
+        {
+            newDate2 += "0" + String(Number(date[2]) + 2) +"00";
+            newDate4 += "0" + String(Number(date[2]) + 2);
+        }
+        else{
+            newDate2 += String(Number(date[2]) + 2) + "00";
+            newDate4 += String(Number(date[2]) + 2);
+        }
+        newDate1 += "-" + newDate2;
+        setMydate(newDate1);
+        setMyDate1(newDate3);
+        setMyDate2(newDate4);
+
+        setCategory(cat);
+        console.log(category);
+        let myLoc = loc.split(",")
+        setLat(myLoc[0]);
+        setLon(myLoc[1]);
+        console.log(lat);
+        console.log(lon);
+
+    }
+
+
+
+
     return(
-        <div>
-        <SearchBar />
+        <div style={{'minHeight':'600px'}}>
+        <SearchBar setFilters={setFilters} />
+
         <div className="container" style={{'marginTop':'50px'}}>
-        { ok ? fetchEvents() : <h1>Loading...</h1>}
-        {/* <EventItem date="Fri, Nov 27, 2020"
-                    time="12:00 AM"
-                    title="Future of Food and Agriculture"
-                    imgurl="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F114510329%2F43820976534%2F1%2Foriginal.20201013-135940?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C800%2C400&s=9276a29e29268aaca8ff93c5a62128c3"
-                    from="Eventbrite"
-                    members="06"
-                    /> */}
+
+        { ok ? fetchEvents() : <Loader />}
+
+
         </div>
         </div>
     );

@@ -31,7 +31,7 @@ const EventFulItem = ({date, time, from, url, description, title, name, address,
                     </div>
                     <div className="card-action">
                     <a href={url} className="btn waves-effect waves-light white-text" style={{'backgroundColor':'#3399ff'}}>Go to event</a>
-                    <i className="material-icons right i1 tooltipped" data-position="bottom"  data-tooltip="Add To wishlist" onClick={() => saveEvent({date, time, from, url, description, title, name, address, id})}>favorite_border</i>
+                    <i className="material-icons right i11 tooltipped" data-position="bottom"  data-tooltip="Add To wishlist" onClick={() => saveEvent({date, time, from, url, description, title, name, address, id})}>favorite_border</i>
                     <i className="material-icons right i2 tooltipped" data-position="bottom" data-tooltip="Share">share</i>
                     </div>
                 </div>

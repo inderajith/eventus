@@ -49,7 +49,7 @@ const Wishlist = () => {
 
 
     return (
-        <div className="container" style={{'marginTop':'50px'}}>
+        <div className="container" style={{'marginTop':'50px', 'marginBottom':'560px'}}>
             {ok ? getWishListItem() : "Loading...."}
         </div>
 

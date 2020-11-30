@@ -37,7 +37,7 @@ const Register = props => {
     }
 
     return (
-        <div>
+        <div style={{'marginTop':'70px', 'marginBottom':'115px'}}>
             <form onSubmit={onSubmit}>
                 <h3>Register</h3>
                 <div className="fm">
